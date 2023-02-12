@@ -25,6 +25,9 @@ class Processing:
         """Если в БД существует хотя бы один пользователь, то запускаем. Если такого нет, то предлагаем создать"""
         pass
 
+    def rename_file_client(self, documents_members):
+        """Переименование документов загруженных участниками мероприятия"""
+        pass
 
 class User:
     """Класс создания, редактирования, удаления, сохранения пользователя в БД"""
@@ -43,14 +46,19 @@ class User:
         new_user['email'] = person[6]
         new_user['password'] = person[7]
         new_user['role'] = person[8]
-        new_user['full_name'] = f'{person[1]} {person[2]} {person[3]}'
+        new_user['full_name'] = f'{person[1]}_{person[2]}_{person[3]}'
 
         # Проверка прав на создание и запись пользователя в БД. Если роль Сисадмин или Админ, идет запись в БД
         flag_access = access.check_role_admin(user_login)
 
         if flag_access ==  True:
+            self.phone = new_user.get('phone')
+            self.full_name = new_user.get('full_name')
+
             #write_new_user_to_db()
-            journal.log(f"{username_login} - создал(а) нового пользователя {new_user.get('phone')} {new_user.get('full_name')}")
+
+            journal.log(f"{username_login} - создал(а) нового пользователя {self.phone} {self.full_name}")
+            self.create_user_profile_folder()
         else:
             journal.log(f"{username_login} - не хвататет прав для создания нового пользователя {new_user.get('phone')} {new_user.get('full_name')}")
 
@@ -59,6 +67,10 @@ class User:
         username = f'{user_login[1]} {user_login[2]}'
         return username
 
+    def create_user_profile_folder(self):
+        self.user_profile_folder = f'/home/logistics/{self.full_name}_{self.phone}'
+        os.makedirs(self.user_profile_folder)
+        journal.log(f'Создана профильная директория: {self.full_name}_{self.phone}')
 
 class Access:
     """Access module. Проверка данных Входа и роли пользователя, для совершения действия"""
@@ -180,6 +192,17 @@ db = (db_user1, db_user2, db_user3, db_user4)
 new_user1 = ('000006', 'Апаева', 'Юлия', 'Владимировна', 'Москва',	'79689537780', 'email@mail.ru', 'bx501eGA', 'client')
 new_user2 = ('000007', 'Воронцова', 'Елена', 'Ивановна', 'Новосибирск', '79095346668', 'rico7272@mail.ru', 'tRxc9mqW', 'client')
 new_user3 = ('000008', 'Дериглазов', 'Сергей', 'Алексеевич', 'Санкт-Петербург', '79216436250', 'der-sergey@yandex.ru', '2He5zqUn', 'client')
+
+# Документы создаваемые/загружаемые участниками (members). Данные колонок из БД.
+agree = 'agree'
+diplom = 'diplom'
+inn = 'inn'
+passport = 'passport'
+registration = 'registration'
+snils ='snils'
+sertificate = 'sertificate'
+survey = 'survey'
+documents_members = (agree, diplom, inn, passport, registration, snils, sertificate, survey)
 
 # Вход пользователя по номеру телефона и паролю, запуск программы
 number = input('Логин: ')
