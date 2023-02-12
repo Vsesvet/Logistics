@@ -68,6 +68,7 @@ class User:
         return username
 
     def create_user_profile_folder(self):
+        """Создание профильной папки участника"""
         self.user_profile_folder = f'/home/logistics/{self.full_name}_{self.phone}'
         os.makedirs(self.user_profile_folder)
         journal.log(f'Создана профильная директория: {self.full_name}_{self.phone}')
@@ -109,6 +110,7 @@ class Access:
             return False
 
     def check_role_member(self, user_login):
+        """Проверка роли - приндалежность к Участнику"""
         role = user_login[8]
         if role == 'member':
             return True
@@ -116,8 +118,9 @@ class Access:
             return False
 
     def check_role_inspector(self, user_login):
+        """Проверка роли - принадлежность к Инспектору"""
         role = user_login[8]
-        if role == 'member':
+        if role == 'inspector':
             return True
         else:
             return False
@@ -164,6 +167,7 @@ class Journal:
             file.write(f"{self.dt_now[:-7]} {info_file} \n")
 
     def finish_log(self):
+        """Последние строки лога перед завершением программы"""
         self.log(f'Выход пользователя {username_login} из системы')
         self.log(f'----------Program finished----------')
         print(f'{self.dt_now} Программа завершена без ошибок')
