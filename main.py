@@ -50,6 +50,7 @@ class Ui_Login(QWidget):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.label_user_not_found)
 
         self.retranslateUi(self)
+        self.pushButton_login.clicked.connect(self.show_event_shedule)
         self.pushButton_login.clicked.connect(self.close) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(self)
 
@@ -68,6 +69,10 @@ class Ui_Login(QWidget):
         x = (desktop.width() - self.width()) // 2
         y = (desktop.height() - self.height()) // 2
         self.move(x, y)
+
+    def show_event_shedule(self):
+        self.wind_shedule = Ui_Event_shedule()
+        self.wind_shedule.show()
 
 class Ui_Event_shedule(QMainWindow):
     def __init__(self):
