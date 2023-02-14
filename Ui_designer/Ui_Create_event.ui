@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Ui_Create_event</class>
+ <widget class="QWidget" name="Ui_Create_event">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>542</width>
+    <height>280</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Создание мероприятия</string>
+  </property>
+  <widget class="QLabel" name="label_create_event">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>10</y>
+     <width>231</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Создание нового мероприятия</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="event_name">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>521</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Наименование мероприятия...</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="event_data">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>120</y>
+     <width>110</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="dateTime">
+    <datetime>
+     <hour>0</hour>
+     <minute>0</minute>
+     <second>0</second>
+     <year>2023</year>
+     <month>1</month>
+     <day>1</day>
+    </datetime>
+   </property>
+   <property name="maximumDateTime">
+    <datetime>
+     <hour>23</hour>
+     <minute>59</minute>
+     <second>59</second>
+     <year>2050</year>
+     <month>12</month>
+     <day>30</day>
+    </datetime>
+   </property>
+   <property name="minimumDate">
+    <date>
+     <year>1752</year>
+     <month>9</month>
+     <day>15</day>
+    </date>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="event_country">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>120</y>
+     <width>241</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Страна...</string>
+   </property>
+  </widget>
+  <widget class="QTimeEdit" name="event_time">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>120</y>
+     <width>118</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="time">
+    <time>
+     <hour>10</hour>
+     <minute>0</minute>
+     <second>0</second>
+    </time>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="event_city">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>160</y>
+     <width>241</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Город...</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="event_theme">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>521</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Тема мероприятия...</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_save_event">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>240</y>
+     <width>131</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Сохранить</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="event_type">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>160</y>
+     <width>241</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>НИР</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Кадавр</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLineEdit" name="event_comment">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>200</y>
+     <width>521</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Комментарий...</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton_save_event</sender>
+   <signal>clicked()</signal>
+   <receiver>Ui_Create_event</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>465</x>
+     <y>262</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>270</x>
+     <y>146</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
