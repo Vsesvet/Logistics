@@ -8,6 +8,7 @@ from Class_Processing import *
 from My_Ui_Login import *
 
 
+
 # Body programm
 # Инициализация классов Журнала, Обработки данных, Интерфейса пользователя
 journal = Journal()
