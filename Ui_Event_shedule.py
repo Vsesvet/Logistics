@@ -52,8 +52,3 @@ class Ui_Event_shedule(QMainWindow):
         self.label_event_shedule.setText(_translate("Event_shedule", "Расписание мероприятий"))
         self.pushButton_create_insector.setText(_translate("Event_shedule", "Создать инспектора"))
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    wind_shedule = Ui_Event_shedule()
-    wind_shedule.show()
-    sys.exit(app.exec_())
