@@ -33,16 +33,6 @@ new_user1 = ('000006', 'Апаева', 'Юлия', 'Владимировна', '
 new_user2 = ('000007', 'Воронцова', 'Елена', 'Ивановна', 'Новосибирск', '79095346668', 'rico7272@mail.ru', 'tRxc9mqW', 'client')
 new_user3 = ('000008', 'Дериглазов', 'Сергей', 'Алексеевич', 'Санкт-Петербург', '79216436250', 'der-sergey@yandex.ru', '2He5zqUn', 'client')
 
-# Документы создаваемые/загружаемые участниками (members). Данные колонок из БД.
-agree = 'agree'
-diplom = 'diplom'
-inn = 'inn'
-passport = 'passport'
-registration = 'registration'
-snils ='snils'
-sertificate = 'sertificate'
-survey = 'survey'
-documents_members = (agree, diplom, inn, passport, registration, snils, sertificate, survey)
 
 # Вход пользователя по номеру телефона и паролю, запуск программы
 if __name__ == '__main__':
@@ -51,17 +41,10 @@ if __name__ == '__main__':
     login.move_to_center()
     login.show()
 
-    # event_shedule = Ui_Event_shedule()
-    # event_shedule.show()
     sys.exit(app.exec())
 
 
-number = input('Логин: ')
-password = input('Пароль: ')
-user_login = access.login(number, password)
-username_login = user.name(user_login)
-
-user.create(new_user1, user_login)
+# user.create(new_user1, user_login)
 
 # Запись в journal.log события окончания работы программы.
 journal.finish_log()

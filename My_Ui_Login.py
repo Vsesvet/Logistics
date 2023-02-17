@@ -37,6 +37,7 @@ class Ui_Login(QWidget):
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.lineEdit_password)
         self.lineEdit_login = QtWidgets.QLineEdit(self.formLayoutWidget)
         self.lineEdit_login.setObjectName("lineEdit_login")
+        self.lineEdit_login.setText('79296062723')
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.lineEdit_login)
         self.label_login = QtWidgets.QLabel(self.formLayoutWidget)
         self.label_login.setObjectName("label_login")
@@ -47,9 +48,14 @@ class Ui_Login(QWidget):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.label_user_not_found)
 
         self.retranslateUi(self)
+        self.pushButton_login.clicked.connect(self.check_access)
         self.pushButton_login.clicked.connect(self.show_event_shedule)
-        self.pushButton_login.clicked.connect(self.close) # type: ignore
+        self.pushButton_login.clicked.connect(self.close)
+        self.lineEdit_password.returnPressed.connect(self.check_access)
+        self.lineEdit_password.returnPressed.connect(self.show_event_shedule)
+        self.lineEdit_password.returnPressed.connect(self.close)
         QtCore.QMetaObject.connectSlotsByName(self)
+        self.setTabOrder(self.lineEdit_login, self.lineEdit_password)
 
     def retranslateUi(self, Login):
         _translate = QtCore.QCoreApplication.translate
@@ -67,11 +73,13 @@ class Ui_Login(QWidget):
         y = (desktop.height() - self.height()) // 2
         self.move(x, y)
 
-    def show_event_shedule(self):
+    def check_access(self):
         access = Access()
         phone_number = self.lineEdit_login.text()
         password = self.lineEdit_password.text()
-        access.login(phone_number,password)
+        access.login(phone_number, password)
+
+    def show_event_shedule(self):
         self.wind_shedule = Ui_Event_shedule()
         self.wind_shedule.show()
 

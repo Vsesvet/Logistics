@@ -1,15 +1,13 @@
 """//////////////////////////////////////////////"""
 """"////////------IMPORT CLASSES-------////////"""
 """//////////////////////////////////////////////"""
-from Class_User import *
+
 from Class_Access import *
 
 class User:
     """Класс создания, редактирования, удаления, сохранения пользователя в БД"""
     def create(self, person, user_login):
         """Действие по клику на кнопку: Добавить нового пользователя"""
-        # row_db = 'string in database'
-        # user_id = len(row_db) + 1
 
         "Check if?"
         username_login = user.name(user_login)
