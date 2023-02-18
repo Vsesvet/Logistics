@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Ui_Create_event</class>
- <widget class="QWidget" name="Ui_Create_event">
+ <class>Create_event</class>
+ <widget class="QWidget" name="Create_event">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>542</width>
-    <height>280</height>
+    <height>319</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Создание мероприятия</string>
+   <string>Логистик (update 23.02)</string>
   </property>
   <widget class="QLabel" name="label_create_event">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>10</y>
-     <width>231</width>
-     <height>17</height>
+     <x>120</x>
+     <y>20</y>
+     <width>351</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Создание нового мероприятия</string>
@@ -30,7 +35,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>40</y>
+     <y>60</y>
      <width>521</width>
      <height>25</height>
     </rect>
@@ -43,7 +48,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>120</y>
+     <y>140</y>
      <width>110</width>
      <height>26</height>
     </rect>
@@ -80,7 +85,7 @@
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>120</y>
+     <y>140</y>
      <width>241</width>
      <height>25</height>
     </rect>
@@ -93,7 +98,7 @@
    <property name="geometry">
     <rect>
      <x>130</x>
-     <y>120</y>
+     <y>140</y>
      <width>118</width>
      <height>26</height>
     </rect>
@@ -110,7 +115,7 @@
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>160</y>
+     <y>180</y>
      <width>241</width>
      <height>25</height>
     </rect>
@@ -123,7 +128,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>80</y>
+     <y>100</y>
      <width>521</width>
      <height>25</height>
     </rect>
@@ -135,9 +140,9 @@
   <widget class="QPushButton" name="pushButton_save_event">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>240</y>
-     <width>131</width>
+     <x>430</x>
+     <y>280</y>
+     <width>101</width>
      <height>25</height>
     </rect>
    </property>
@@ -149,7 +154,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>160</y>
+     <y>180</y>
      <width>241</width>
      <height>25</height>
     </rect>
@@ -169,7 +174,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>200</y>
+     <y>220</y>
      <width>521</width>
      <height>25</height>
     </rect>
@@ -178,13 +183,54 @@
     <string>Комментарий...</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_cancel">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>280</y>
+     <width>101</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Отмена</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_username_role">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>0</y>
+     <width>301</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Фомина Ирина (Администратор)</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
  </widget>
+ <tabstops>
+  <tabstop>event_name</tabstop>
+  <tabstop>event_theme</tabstop>
+  <tabstop>event_data</tabstop>
+  <tabstop>event_time</tabstop>
+  <tabstop>event_country</tabstop>
+  <tabstop>event_type</tabstop>
+  <tabstop>event_city</tabstop>
+  <tabstop>event_comment</tabstop>
+  <tabstop>pushButton_cancel</tabstop>
+  <tabstop>pushButton_save_event</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
    <sender>pushButton_save_event</sender>
    <signal>clicked()</signal>
-   <receiver>Ui_Create_event</receiver>
+   <receiver>Create_event</receiver>
    <slot>show()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -194,6 +240,22 @@
     <hint type="destinationlabel">
      <x>270</x>
      <y>146</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>Create_event</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>360</x>
+     <y>292</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>270</x>
+     <y>159</y>
     </hint>
    </hints>
   </connection>
