@@ -48,6 +48,7 @@ class Ui_Login(QWidget):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.label_user_not_found)
 
         self.retranslateUi(self)
+        # Нажатия на кнопку, вход по клавише Enter
         self.pushButton_login.clicked.connect(self.check_access)
         self.pushButton_login.clicked.connect(self.show_event_shedule)
         self.pushButton_login.clicked.connect(self.close)

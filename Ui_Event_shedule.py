@@ -2,6 +2,7 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from Ui_Create_event import *
 
 
 class Ui_Event_shedule(QMainWindow):
@@ -104,17 +105,22 @@ class Ui_Event_shedule(QMainWindow):
         self.statusbar = QtWidgets.QStatusBar(self)
         self.statusbar.setObjectName("statusbar")
         self.setStatusBar(self.statusbar)
+        # Блокировка главного окна, пока открыто дочернее
+        # self.setWindowModality(QtCore.Qt.WindowModal)
+        # self.setAttribute(QtCore.Qt.WA_DeleteOnClose, True)
 
         self.retranslateUi(Ui_Event_shedule)
-        self.pushButton_exit.clicked.connect(self.close) # type: ignore
-        self.pushButton_create_event.clicked.connect(self.show) # type: ignore
-        self.pushButton_create_participant.clicked.connect(self.show) # type: ignore
-        self.pushButton_create_organization.clicked.connect(self.show) # type: ignore
-        self.pushButton_create_inspector.clicked.connect(self.show) # type: ignore
-        self.pushButton_export_xls.clicked.connect(self.showFullScreen) # type: ignore
-        self.pushButton_print.clicked.connect(self.show) # type: ignore
-        self.pushButton_find_event.clicked.connect(self.tree_event_shedule.clear) # type: ignore
+        # Нажатия на кнопки
+        self.pushButton_exit.clicked.connect(self.close)
+        self.pushButton_create_event.clicked.connect(self.show_create_event)
+        self.pushButton_create_participant.clicked.connect(self.show)
+        self.pushButton_create_organization.clicked.connect(self.show)
+        self.pushButton_create_inspector.clicked.connect(self.show)
+        self.pushButton_export_xls.clicked.connect(self.showFullScreen)
+        self.pushButton_print.clicked.connect(self.show)
+        self.pushButton_find_event.clicked.connect(self.tree_event_shedule.clear)
         QtCore.QMetaObject.connectSlotsByName(self)
+        # Порядок перехода по Tab
         self.setTabOrder(self.pushButton_create_event, self.pushButton_create_participant)
         self.setTabOrder(self.pushButton_create_participant, self.pushButton_create_organization)
         self.setTabOrder(self.pushButton_create_organization, self.pushButton_create_inspector)
@@ -162,3 +168,8 @@ class Ui_Event_shedule(QMainWindow):
         x = (desktop.width() - self.width()) // 2
         y = (desktop.height() - self.height()) // 2
         self.move(x, y)
+
+    def show_create_event(self):
+        self.create_event = Ui_Create_event()
+        # exec - открывает QDialog, как модальное окно!
+        self.create_event.exec()
