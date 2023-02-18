@@ -3,6 +3,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from Ui_Create_event import *
+from Ui_Create_participant import *
 
 
 class Ui_Event_shedule(QMainWindow):
@@ -105,15 +106,12 @@ class Ui_Event_shedule(QMainWindow):
         self.statusbar = QtWidgets.QStatusBar(self)
         self.statusbar.setObjectName("statusbar")
         self.setStatusBar(self.statusbar)
-        # Блокировка главного окна, пока открыто дочернее
-        # self.setWindowModality(QtCore.Qt.WindowModal)
-        # self.setAttribute(QtCore.Qt.WA_DeleteOnClose, True)
-
         self.retranslateUi(Ui_Event_shedule)
+
         # Нажатия на кнопки
         self.pushButton_exit.clicked.connect(self.close)
         self.pushButton_create_event.clicked.connect(self.show_create_event)
-        self.pushButton_create_participant.clicked.connect(self.show)
+        self.pushButton_create_participant.clicked.connect(self.show_create_participant)
         self.pushButton_create_organization.clicked.connect(self.show)
         self.pushButton_create_inspector.clicked.connect(self.show)
         self.pushButton_export_xls.clicked.connect(self.showFullScreen)
@@ -173,3 +171,7 @@ class Ui_Event_shedule(QMainWindow):
         self.create_event = Ui_Create_event()
         # exec - открывает QDialog, как модальное окно!
         self.create_event.exec()
+
+    def show_create_participant(self):
+        self.create_participant = Ui_Create_participant()
+        self.create_participant.exec()

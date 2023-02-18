@@ -58,8 +58,8 @@ class Ui_Create_event(QDialog):
         # Нажатия на кнопки
         self.pushButton_save_event.clicked.connect(self.show)
         self.pushButton_cancel.clicked.connect(self.close)
-
         QtCore.QMetaObject.connectSlotsByName(self)
+
         self.setTabOrder(self.event_name, self.event_theme)
         self.setTabOrder(self.event_theme, self.event_data)
         self.setTabOrder(self.event_data, self.event_time)
