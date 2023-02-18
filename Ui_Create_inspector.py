@@ -2,10 +2,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog
 
 
-class Ui_Create_participant(QDialog):
+class Ui_Create_inspector(QDialog):
     def __init__(self):
-        super(Ui_Create_participant, self).__init__()
-        self.setObjectName("Create_participant")
+        super(Ui_Create_inspector, self).__init__()
+        self.setObjectName("Create_inspector")
         self.resize(431, 368)
         self.label_username_role = QtWidgets.QLabel(self)
         self.label_username_role.setGeometry(QtCore.QRect(130, 0, 301, 20))
@@ -26,15 +26,15 @@ class Ui_Create_participant(QDialog):
         self.pushButton_generate = QtWidgets.QPushButton(self)
         self.pushButton_generate.setGeometry(QtCore.QRect(150, 180, 131, 25))
         self.pushButton_generate.setObjectName("pushButton_generate")
-        self.checkBox_disabled_participant = QtWidgets.QCheckBox(self)
-        self.checkBox_disabled_participant.setGeometry(QtCore.QRect(10, 300, 221, 23))
-        self.checkBox_disabled_participant.setObjectName("checkBox_disabled_participant")
-        self.label_create_participant = QtWidgets.QLabel(self)
-        self.label_create_participant.setGeometry(QtCore.QRect(120, 20, 251, 31))
+        self.checkBox_disabled_inspector = QtWidgets.QCheckBox(self)
+        self.checkBox_disabled_inspector.setGeometry(QtCore.QRect(10, 300, 221, 23))
+        self.checkBox_disabled_inspector.setObjectName("checkBox_disabled_inspector")
+        self.label_create_inspector = QtWidgets.QLabel(self)
+        self.label_create_inspector.setGeometry(QtCore.QRect(120, 20, 251, 31))
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.label_create_participant.setFont(font)
-        self.label_create_participant.setObjectName("label_create_participant")
+        self.label_create_inspector.setFont(font)
+        self.label_create_inspector.setObjectName("label_create_inspector")
         self.lineEdit_phone_number = QtWidgets.QLineEdit(self)
         self.lineEdit_phone_number.setGeometry(QtCore.QRect(150, 60, 131, 25))
         self.lineEdit_phone_number.setObjectName("lineEdit_phone_number")
@@ -59,16 +59,16 @@ class Ui_Create_participant(QDialog):
         self.lineEdit_comment = QtWidgets.QLineEdit(self)
         self.lineEdit_comment.setGeometry(QtCore.QRect(10, 220, 411, 25))
         self.lineEdit_comment.setObjectName("lineEdit_comment")
-
         self.retranslateUi(self)
+
         # Нажатия на кнопки
-        self.pushButton_generate.clicked.connect(self.generate_password)
+        self.pushButton_generate.clicked.connect(self.lineEdit_password.selectAll)
         self.pushButton_save.clicked.connect(self.show)
         self.pushButton_cancel.clicked.connect(self.close)
-        self.checkBox_disabled_participant.stateChanged['int'].connect(self.show)
+        self.checkBox_disabled_inspector.stateChanged['int'].connect(self.show)
         QtCore.QMetaObject.connectSlotsByName(self)
 
-        self.setTabOrder(self.lineEdit_phone_number, self.lineEdit_second_name)
+        # Порядок выбора по Tab
         self.setTabOrder(self.lineEdit_second_name, self.lineEdit_first_name)
         self.setTabOrder(self.lineEdit_first_name, self.lineEdit_last_name)
         self.setTabOrder(self.lineEdit_last_name, self.lineEdit_email)
@@ -77,31 +77,31 @@ class Ui_Create_participant(QDialog):
         self.setTabOrder(self.comboBox_select_organization, self.lineEdit_password)
         self.setTabOrder(self.lineEdit_password, self.pushButton_generate)
         self.setTabOrder(self.pushButton_generate, self.lineEdit_comment)
-        self.setTabOrder(self.lineEdit_comment, self.checkBox_disabled_participant)
-        self.setTabOrder(self.checkBox_disabled_participant, self.pushButton_cancel)
+        self.setTabOrder(self.lineEdit_comment, self.checkBox_disabled_inspector)
+        self.setTabOrder(self.checkBox_disabled_inspector, self.pushButton_cancel)
         self.setTabOrder(self.pushButton_cancel, self.pushButton_save)
         self.setTabOrder(self.pushButton_save, self.lineEdit_phone_number)
 
-    def retranslateUi(self, Create_participant):
+    def retranslateUi(self, Create_inspector):
         _translate = QtCore.QCoreApplication.translate
-        Create_participant.setWindowTitle(_translate("Create_participant", "Логистик  (update 23.02)"))
-        self.label_username_role.setText(_translate("Create_participant", "Фомина Ирина (Администратор)"))
-        self.lineEdit_second_name.setPlaceholderText(_translate("Create_participant", "Фамилия..."))
-        self.lineEdit_email.setPlaceholderText(_translate("Create_participant", "e-mail..."))
-        self.lineEdit_last_name.setPlaceholderText(_translate("Create_participant", "Отчество..."))
-        self.lineEdit_password.setPlaceholderText(_translate("Create_participant", "Пароль..."))
-        self.pushButton_generate.setText(_translate("Create_participant", "Сгенерировать"))
-        self.checkBox_disabled_participant.setText(_translate("Create_participant", "Отключить учетную запись"))
-        self.label_create_participant.setText(_translate("Create_participant", "Создание участника"))
-        self.lineEdit_phone_number.setPlaceholderText(_translate("Create_participant", "79265001020"))
-        self.lineEdit_first_name.setPlaceholderText(_translate("Create_participant", "Имя..."))
-        self.comboBox_select_organization.setItemText(0, _translate("Create_participant", "Организация"))
-        self.comboBox_select_organization.setItemText(1, _translate("Create_participant", "Мерц"))
-        self.comboBox_select_organization.setItemText(2, _translate("Create_participant", "Аллерган"))
-        self.pushButton_save.setText(_translate("Create_participant", "Сохранить"))
-        self.pushButton_cancel.setText(_translate("Create_participant", "Отмена"))
-        self.lineEdit_city.setPlaceholderText(_translate("Create_participant", "Город..."))
-        self.lineEdit_comment.setPlaceholderText(_translate("Create_participant", "Комментарий..."))
+        Create_inspector.setWindowTitle(_translate("Create_inspector", "Логистик  (update 23.02)"))
+        self.label_username_role.setText(_translate("Create_inspector", "Фомина Ирина (Администратор)"))
+        self.lineEdit_second_name.setPlaceholderText(_translate("Create_inspector", "Фамилия..."))
+        self.lineEdit_email.setPlaceholderText(_translate("Create_inspector", "e-mail..."))
+        self.lineEdit_last_name.setPlaceholderText(_translate("Create_inspector", "Отчество..."))
+        self.lineEdit_password.setPlaceholderText(_translate("Create_inspector", "Пароль..."))
+        self.pushButton_generate.setText(_translate("Create_inspector", "Сгенерировать"))
+        self.checkBox_disabled_inspector.setText(_translate("Create_inspector", "Отключить учетную запись"))
+        self.label_create_inspector.setText(_translate("Create_inspector", "Создание инспектора"))
+        self.lineEdit_phone_number.setPlaceholderText(_translate("Create_inspector", "79265001020"))
+        self.lineEdit_first_name.setPlaceholderText(_translate("Create_inspector", "Имя..."))
+        self.comboBox_select_organization.setItemText(0, _translate("Create_inspector", "Организация"))
+        self.comboBox_select_organization.setItemText(1, _translate("Create_inspector", "Мерц"))
+        self.comboBox_select_organization.setItemText(2, _translate("Create_inspector", "Аллерган"))
+        self.pushButton_save.setText(_translate("Create_inspector", "Сохранить"))
+        self.pushButton_cancel.setText(_translate("Create_inspector", "Отмена"))
+        self.lineEdit_city.setPlaceholderText(_translate("Create_inspector", "Город..."))
+        self.lineEdit_comment.setPlaceholderText(_translate("Create_inspector", "Комментарий..."))
         self.move_to_center()
 
     def move_to_center(self):
@@ -110,6 +110,3 @@ class Ui_Create_participant(QDialog):
         x = (desktop.width() - self.width()) // 2
         y = (desktop.height() - self.height()) // 2
         self.move(x, y)
-
-    def generate_password(self):
-        pass

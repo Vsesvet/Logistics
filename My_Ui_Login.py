@@ -60,7 +60,7 @@ class Ui_Login(QWidget):
 
     def retranslateUi(self, Login):
         _translate = QtCore.QCoreApplication.translate
-        Login.setWindowTitle(_translate("Login", "Вход в программу"))
+        Login.setWindowTitle(_translate("Login", "Логистик  (update 23.02)"))
         self.pushButton_login.setText(_translate("Login", "Войти"))
         self.label_main_input.setText(_translate("Login", "Логистик"))
         self.label_password.setText(_translate("Login", "Пароль"))

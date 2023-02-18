@@ -1,9 +1,13 @@
 # New_Event_Shedule
-import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+# import sys
+# from PyQt5 import QtCore, QtGui, QtWidgets
+# from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QMainWindow
+from Class_Journal import *
 from Ui_Create_event import *
 from Ui_Create_participant import *
+from Ui_Create_organization import *
+from Ui_Create_inspector import *
 
 
 class Ui_Event_shedule(QMainWindow):
@@ -13,10 +17,17 @@ class Ui_Event_shedule(QMainWindow):
         self.resize(1080, 600)
         self.centralwidget = QtWidgets.QWidget(self)
         self.centralwidget.setObjectName("centralwidget")
+
+        # Tree Event Shedule
         self.tree_event_shedule = QtWidgets.QTreeWidget(self.centralwidget)
         self.tree_event_shedule.setGeometry(QtCore.QRect(20, 170, 1041, 261))
         self.tree_event_shedule.setObjectName("tree_event_shedule")
         self.tree_event_shedule.headerItem().setText(0, "1")
+
+        # Заполнение заголовков Tree
+        columns_names = [' Мероприятие          ', 'Дата', 'Страна', 'Город', 'Участников', 'Организация', 'Статус']
+        self.adjust_tree(columns_names, self.tree_event_shedule)
+
         self.label_event_shedule = QtWidgets.QLabel(self.centralwidget)
         self.label_event_shedule.setGeometry(QtCore.QRect(400, 20, 321, 31))
         font = QtGui.QFont()
@@ -109,15 +120,17 @@ class Ui_Event_shedule(QMainWindow):
         self.retranslateUi(Ui_Event_shedule)
 
         # Нажатия на кнопки
+        # self.pushButton_exit.clicked.connect(self.finish_log)
         self.pushButton_exit.clicked.connect(self.close)
         self.pushButton_create_event.clicked.connect(self.show_create_event)
         self.pushButton_create_participant.clicked.connect(self.show_create_participant)
-        self.pushButton_create_organization.clicked.connect(self.show)
-        self.pushButton_create_inspector.clicked.connect(self.show)
+        self.pushButton_create_organization.clicked.connect(self.show_create_organization)
+        self.pushButton_create_inspector.clicked.connect(self.show_create_inspector)
         self.pushButton_export_xls.clicked.connect(self.showFullScreen)
         self.pushButton_print.clicked.connect(self.show)
         self.pushButton_find_event.clicked.connect(self.tree_event_shedule.clear)
         QtCore.QMetaObject.connectSlotsByName(self)
+
         # Порядок перехода по Tab
         self.setTabOrder(self.pushButton_create_event, self.pushButton_create_participant)
         self.setTabOrder(self.pushButton_create_participant, self.pushButton_create_organization)
@@ -137,7 +150,10 @@ class Ui_Event_shedule(QMainWindow):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("self", "Логистик  (update 23.02)"))
         self.label_event_shedule.setText(_translate("self", "Расписание мероприятий"))
+
+        # Передать сюда username_role из Class_Access или Class_User
         self.label_username_role.setText(_translate("self", "Фамилия Имя (роль)"))
+
         self.pushButton_create_event.setText(_translate("self", "Создать мероприятие"))
         self.pushButton_create_participant.setText(_translate("self", "Создать участника"))
         self.pushButton_create_organization.setText(_translate("self", "Создать организацию"))
@@ -167,11 +183,34 @@ class Ui_Event_shedule(QMainWindow):
         y = (desktop.height() - self.height()) // 2
         self.move(x, y)
 
+    def adjust_tree(self, columns_names, tree):
+        """Установка наименований для колонок Tree"""
+        for i in columns_names:
+            tree.headerItem().setText(columns_names.index(i), i)
+
+        # Разобраться как установить фикс размер для первой колонки
+        tree.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
+        # tree.resizeColumnToContents(50)
+
     def show_create_event(self):
-        self.create_event = Ui_Create_event()
+        create_event = Ui_Create_event()
         # exec - открывает QDialog, как модальное окно!
-        self.create_event.exec()
+        create_event.exec()
 
     def show_create_participant(self):
         self.create_participant = Ui_Create_participant()
+        # exec - открывает QDialog, как модальное окно!
         self.create_participant.exec()
+
+    def show_create_organization(self):
+        self.create_organization = Ui_Create_org()
+        # exec - открывает QDialog, как модальное окно!
+        self.create_organization.exec()
+
+    def show_create_inspector(self):
+        self.create_inspector = Ui_Create_inspector()
+        self.create_inspector.exec()
+
+    def finish_log(self):
+        """Запись в journal.log события окончания работы программы."""
+        Journal().finish_log()
