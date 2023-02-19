@@ -1,15 +1,18 @@
 import pymysql
-
+from db_config import host, password,db_name,user
 class Mysql:
     """Подключение и работа с базой данных MqSql"""
     def __init__(self, host, port, user, password, db_name):
-        self.connection = pymysql.connect(
-            host=host,
-            port=port,
-            user=user,
-            password=password,
-            database=db_name,
-            cursorclass=pymysql.cursors.DictCursor)
+        try:
+            self.connection = pymysql.connect(
+                host=host,
+                port=3306,
+                user=user,
+                password=password,
+                database=db_name,
+                cursorclass=pymysql.cursors.DictCursor)
+        except Exception as ex:
+            print("Error connection to db")
 
     def select_all_data(self):
         """Получение всех строк из базы данных"""
@@ -19,11 +22,22 @@ class Mysql:
             rows = cursor.fetchall()
             return rows
 
-    def add_user(self, phone_number, second_name, first_name, last_name, role, fullname, city, email, password):
+    def add_participant(self, phone_number, second_name, first_name, last_name, role, full_name, city, email, password, comment,disabled):
         """Добавление нового пользователя в базу данных MySql"""
+        print(phone_number, second_name, first_name, last_name, role, full_name, city, email, password, comment)
+        select_role_id = f"SELECT role_id FROM roles WHERE  role_name = '{role}'"
+        with self.connection.cursor() as cursor:
+            cursor.execute(select_role_id)
+            result = cursor.fetchall()
+            self.connection.commit()
+        print(result)
+        role_id = result[0]['role_id']
+        print(role_id)
 
-        insert_query = f"INSERT INTO 'users' (phone_number, second_name, first_name, last_name, role, fullname, city, email, password) \
-        VALUES = ({phone_number}, {second_name}, {first_name}, {last_name}, {role}, {fullname}, {city}, {email}, {password})"
+        insert_query = f"INSERT INTO participants (phone_number, second_name, first_name, last_name, full_name, role_id, city, email, password, comment,disabled) \
+        VALUES('{phone_number}', '{second_name}', '{first_name}', '{last_name}', '{full_name}', {role_id}, '{city}', '{email}', '{password}', '{comment}',{disabled})"
+
+        print(insert_query)
         with self.connection.cursor() as cursor:
             cursor.execute(insert_query)
             self.connection.commit()
