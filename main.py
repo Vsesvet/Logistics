@@ -47,4 +47,4 @@ if __name__ == '__main__':
 # user.create(new_user1, user_login)
 
 # Запись в journal.log события окончания работы программы.
-journal.finish_log()
+# journal.finish_log()

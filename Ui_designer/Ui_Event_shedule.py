@@ -1,3 +1,5 @@
+# Автономное окно с импортами других окон
+import sys
 from PyQt5.QtWidgets import QMainWindow
 from Class_Journal import *
 from Ui_Create_event import *
@@ -8,22 +10,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Event_shedule(QMainWindow):
-    """Главное окно Расписание Мероприятий"""
     def __init__(self):
         super(Ui_Event_shedule, self).__init__()
         self.setObjectName("Event_shedule")
-        self.resize(1080, 620)
+        self.resize(1080, 600)
         self.centralwidget = QtWidgets.QWidget(self)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout_2.setObjectName("gridLayout_2")
 
-        # Заполнение username_role
         self.label_username_role = QtWidgets.QLabel(self.centralwidget)
-        self.label_username_role.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.label_username_role.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_username_role.setObjectName("label_username_role")
         self.gridLayout_2.addWidget(self.label_username_role, 0, 3, 1, 3)
-
         self.label_event_shedule = QtWidgets.QLabel(self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(18)
@@ -66,7 +65,6 @@ class Ui_Event_shedule(QMainWindow):
 
         # Заголовки Label
         self.label_total_completed_events = QtWidgets.QLabel(self.centralwidget)
-        self.label_total_completed_events.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
         self.label_total_completed_events.setObjectName("label_total_completed_events")
         self.gridLayout_2.addWidget(self.label_total_completed_events, 5, 3, 1, 3)
         self.label_find_event = QtWidgets.QLabel(self.centralwidget)
@@ -88,7 +86,7 @@ class Ui_Event_shedule(QMainWindow):
         self.comboBox_select_organization.setItemText(3, "")
         self.gridLayout.addWidget(self.comboBox_select_organization, 0, 3, 1, 1)
         self.label_organization = QtWidgets.QLabel(self.centralwidget)
-        self.label_organization.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.label_organization.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_organization.setObjectName("label_organization")
         self.gridLayout.addWidget(self.label_organization, 0, 2, 1, 1)
         self.comboBox_event_status = QtWidgets.QComboBox(self.centralwidget)
@@ -99,8 +97,7 @@ class Ui_Event_shedule(QMainWindow):
         self.comboBox_event_status.addItem("")
         self.gridLayout.addWidget(self.comboBox_event_status, 0, 5, 1, 1)
 
-        # Здесь надо реализовать функцию Поиска по мероприятиям
-        # По наименованию, датам,
+        # Поиск по мероприятиям
         self.lineEdit_find_event = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_find_event.setObjectName("lineEdit_find_event")
         self.gridLayout.addWidget(self.lineEdit_find_event, 0, 0, 1, 2)
@@ -125,7 +122,7 @@ class Ui_Event_shedule(QMainWindow):
         self.statusbar.setObjectName("statusbar")
         self.setStatusBar(self.statusbar)
         self.retranslateUi(self)
-
+        
         # Нажатия на кнопки
         # self.pushButton_exit.clicked.connect(self.finish_log)
         self.pushButton_exit.clicked.connect(self.close)
@@ -154,13 +151,12 @@ class Ui_Event_shedule(QMainWindow):
         self.setTabOrder(self.comboBox_event_status, self.pushButton_find_event)
 
     def retranslateUi(self, Ui_Event_shedule):
-        """Перевод на русский наименования кнопок, меток"""
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("self", "Логистик  (update 23.02)"))
-
+        
         # Передать сюда username_role из Class_Access или Class_User
         self.label_username_role.setText(_translate("self", "Фомина Ирина (Администратор)"))
-
+        
         self.label_event_shedule.setText(_translate("self", "Расписание мероприятий"))
         self.pushButton_create_event.setText(_translate("self", "Создать мероприятие"))
         self.pushButton_create_organization.setText(_translate("self", "Создать организацию"))
@@ -169,10 +165,7 @@ class Ui_Event_shedule(QMainWindow):
         self.pushButton_exit.setText(_translate("self", "Выход"))
         self.pushButton_create_participant.setText(_translate("self", "Создать участника"))
         self.pushButton_create_inspector.setText(_translate("self", "Создать инспектора"))
-
-        # Здесь должна быть функция подсчета количества мероприятий
         self.label_total_completed_events.setText(_translate("self", "Всего проведено 2 мероприятия"))
-
         self.label_find_event.setText(_translate("self", "Фильтры поиска мероприятия:"))
         self.label_status_event.setText(_translate("self", "  Статус мероприятия"))
         self.comboBox_select_organization.setItemText(0, _translate("self", "Все"))
@@ -187,8 +180,8 @@ class Ui_Event_shedule(QMainWindow):
         self.pushButton_find_event.setText(_translate("self", "Найти"))
         self.move_to_center()
 
+
     def move_to_center(self):
-        """Выравниваем окно по центру экрана"""
         desktop = QApplication.desktop()
         desktop.screenGeometry()
         x = (desktop.width() - self.width()) // 2
@@ -205,28 +198,33 @@ class Ui_Event_shedule(QMainWindow):
         # tree.resizeColumnToContents(50)
 
     def show_create_event(self):
-        """Запускает окно Создание Мероприятия"""
         create_event = Ui_Create_event()
         # exec - открывает QDialog, как модальное окно!
         create_event.exec()
 
     def show_create_participant(self):
-        """Заспускает окно создание Участника"""
         self.create_participant = Ui_Create_participant()
         # exec - открывает QDialog, как модальное окно!
         self.create_participant.exec()
 
     def show_create_organization(self):
-        """Запускает окно создание Организации"""
         self.create_organization = Ui_Create_org()
         # exec - открывает QDialog, как модальное окно!
         self.create_organization.exec()
 
     def show_create_inspector(self):
-        """Запускает окно создание Инспектора"""
         self.create_inspector = Ui_Create_inspector()
         self.create_inspector.exec()
 
     def finish_log(self):
         """Запись в journal.log события окончания работы программы."""
         Journal().finish_log()
+
+
+# Автономное окно с импортами других окон
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    ui = Ui_Event_shedule()
+    ui.show()
+    sys.exit(app.exec())
+
