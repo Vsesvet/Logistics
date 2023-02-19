@@ -1,9 +1,7 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtWidgets import QApplication, QWidget
 
-from Class_Access import *
-from Ui_Event_shedule import *
 
 class Ui_Login(QWidget):
     def __init__(self):
@@ -37,7 +35,6 @@ class Ui_Login(QWidget):
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.lineEdit_password)
         self.lineEdit_login = QtWidgets.QLineEdit(self.formLayoutWidget)
         self.lineEdit_login.setObjectName("lineEdit_login")
-        self.lineEdit_login.setText('79296062723')
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.lineEdit_login)
         self.label_login = QtWidgets.QLabel(self.formLayoutWidget)
         self.label_login.setObjectName("label_login")
@@ -48,40 +45,21 @@ class Ui_Login(QWidget):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.label_user_not_found)
 
         self.retranslateUi(self)
-        # Нажатия на кнопку, вход по клавише Enter
-        self.pushButton_login.clicked.connect(self.check_access)
-        self.pushButton_login.clicked.connect(self.show_event_shedule)
-        self.pushButton_login.clicked.connect(self.close)
-        self.lineEdit_password.returnPressed.connect(self.check_access)
-        self.lineEdit_password.returnPressed.connect(self.show_event_shedule)
-        self.lineEdit_password.returnPressed.connect(self.close)
+        self.pushButton_login.clicked.connect(self.close) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(self)
-        self.setTabOrder(self.lineEdit_login, self.lineEdit_password)
 
     def retranslateUi(self, Login):
         _translate = QtCore.QCoreApplication.translate
-        Login.setWindowTitle(_translate("Login", "Логистик  (update 23.02)"))
+        Login.setWindowTitle(_translate("Login", "Вход в программу"))
         self.pushButton_login.setText(_translate("Login", "Войти"))
         self.label_main_input.setText(_translate("Login", "Логистик"))
         self.label_password.setText(_translate("Login", "Пароль"))
         self.lineEdit_login.setPlaceholderText(_translate("Login", "79265002010"))
         self.label_login.setText(_translate("Login", "Логин"))
 
-    def move_to_center(self):
-        desktop = QApplication.desktop()
-        rect = desktop.screenGeometry()
-        x = (desktop.width() - self.width()) // 2
-        y = (desktop.height() - self.height()) // 2
-        self.move(x, y)
 
-    def check_access(self):
-        access = Access()
-        phone_number = self.lineEdit_login.text()
-        password = self.lineEdit_password.text()
-        access.login(phone_number, password)
-
-    def show_event_shedule(self):
-        self.wind_shedule = Ui_Event_shedule()
-        self.wind_shedule.show()
-
-
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    win_login = Ui_Login()
+    win_login.show()
+    sys.exit(app.exec())

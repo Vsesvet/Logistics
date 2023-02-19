@@ -18,7 +18,7 @@ class Ui_Event_shedule(QMainWindow):
         self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout_2.setObjectName("gridLayout_2")
 
-        # Заполнение username_role
+        # username_role, заполнение setText в разделе
         self.label_username_role = QtWidgets.QLabel(self.centralwidget)
         self.label_username_role.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
         self.label_username_role.setObjectName("label_username_role")
@@ -186,6 +186,7 @@ class Ui_Event_shedule(QMainWindow):
         self.lineEdit_find_event.setPlaceholderText(_translate("self", "Наименование мероприятия..."))
         self.pushButton_find_event.setText(_translate("self", "Найти"))
         self.move_to_center()
+        # self.set_username_and_role()
 
     def move_to_center(self):
         """Выравниваем окно по центру экрана"""
@@ -194,6 +195,9 @@ class Ui_Event_shedule(QMainWindow):
         x = (desktop.width() - self.width()) // 2
         y = (desktop.height() - self.height()) // 2
         self.move(x, y)
+
+    # def set_username_and_role(self, user_login):
+
 
     def adjust_tree(self, columns_names, tree):
         """Установка наименований для колонок Tree"""
