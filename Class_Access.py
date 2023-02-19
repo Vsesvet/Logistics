@@ -68,5 +68,3 @@ db_user4 = {'phone_number': '79216436255', 'second_name': 'Дериглазов�
 
 # Database storage:
 db = (db_user1, db_user2, db_user3, db_user4)
-print(type(db))
-print(db)

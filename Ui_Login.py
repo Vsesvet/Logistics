@@ -79,7 +79,7 @@ class Ui_Login(QWidget):
         phone_number = f'{self.lineEdit_login.text()}'
         password = f'{self.lineEdit_password.text()}'
         user_login = access.login(phone_number, password)
-        print(user_login)
+        #print(user_login)
 
     def show_event_shedule(self):
         self.wind_shedule = Ui_Event_shedule()
