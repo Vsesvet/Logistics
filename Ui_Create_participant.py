@@ -1,6 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog
 
+from Class_Mysql import*
+from db_config import host, port, password, db_name, user
 
 class Ui_Create_participant(QDialog):
     def __init__(self):
@@ -63,7 +65,7 @@ class Ui_Create_participant(QDialog):
         self.retranslateUi(self)
         # Нажатия на кнопки
         self.pushButton_generate.clicked.connect(self.generate_password)
-        self.pushButton_save.clicked.connect(self.show)
+        self.pushButton_save.clicked.connect(self.create_participant)
         self.pushButton_cancel.clicked.connect(self.close)
         self.checkBox_disabled_participant.stateChanged['int'].connect(self.show)
         QtCore.QMetaObject.connectSlotsByName(self)
@@ -81,6 +83,9 @@ class Ui_Create_participant(QDialog):
         self.setTabOrder(self.checkBox_disabled_participant, self.pushButton_cancel)
         self.setTabOrder(self.pushButton_cancel, self.pushButton_save)
         self.setTabOrder(self.pushButton_save, self.lineEdit_phone_number)
+
+        self.db = Mysql(host, port, user, password, db_name)
+
 
     def retranslateUi(self, Create_participant):
         _translate = QtCore.QCoreApplication.translate
@@ -111,5 +116,22 @@ class Ui_Create_participant(QDialog):
         y = (desktop.height() - self.height()) // 2
         self.move(x, y)
 
+    def create_participant(self):
+        phone_number = self.lineEdit_phone_number.text()
+        second_name = self.lineEdit_second_name.text()
+        first_name = self.lineEdit_first_name.text()
+        last_name = self.lineEdit_last_name.text()
+        email = self.lineEdit_email.text()
+        city = self.lineEdit_city.text()
+        password = self.lineEdit_password.text()
+        comment = self.lineEdit_comment.text()
+        disabled = self.checkBox_disabled_participant.isChecked()
+
+        role = "participant"
+        full_name = second_name + " " + first_name +" " + last_name
+        if len(phone_number) == 11:
+            self.db.add_participant(phone_number, second_name, first_name, last_name, role, full_name, email, city, password, comment,disabled)
+        else:
+            self.lineEdit_phone_number.setPlaceholderText("ВВЕДИТЕ НОМЕР ТЕЛЕФОНА")
     def generate_password(self):
         pass

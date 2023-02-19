@@ -1,2 +1,0 @@
-{'phone_number': '', 'path': '', 'passport': '', 'registration': '', 'inn': '', 'snils': '', 'diploma': '', 'sertificate': ''}
-{'phone_number': '', 'path': '', 'passport': '', 'registration': '', 'inn': '', 'snils': '', 'diploma': '', 'sertificate': ''}
