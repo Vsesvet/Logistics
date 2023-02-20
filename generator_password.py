@@ -2,6 +2,7 @@ import random
 from string import printable
 
 def generate():
+    """Функция генерации пароля"""
     simbols = []
     exept = ['l', 'o', 'i', 'I', 'O']
     for i in printable:
@@ -22,6 +23,5 @@ def generate():
         lenght += 1
 
     password = ''.join(passw)
-    print(password)
     return password
 
