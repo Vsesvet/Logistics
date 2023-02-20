@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog
-
+import generator_password
 
 class Ui_Create_inspector(QDialog):
     def __init__(self):
@@ -62,7 +62,7 @@ class Ui_Create_inspector(QDialog):
         self.retranslateUi(self)
 
         # Нажатия на кнопки
-        self.pushButton_generate.clicked.connect(self.lineEdit_password.selectAll)
+        self.pushButton_generate.clicked.connect(self.generate_password)
         self.pushButton_save.clicked.connect(self.show)
         self.pushButton_cancel.clicked.connect(self.close)
         self.checkBox_disabled_inspector.stateChanged['int'].connect(self.show)
@@ -110,3 +110,7 @@ class Ui_Create_inspector(QDialog):
         x = (desktop.width() - self.width()) // 2
         y = (desktop.height() - self.height()) // 2
         self.move(x, y)
+
+    def generate_password(self):
+        passw = generator_password.generate()
+        self.lineEdit_password.setText(f'{passw}')
