@@ -1,3 +1,10 @@
+Если пароль на базу данных не установлен, то можно зайти с помощью sudo mysql
+Установка пароля root:
+ALTER USER 'user-name'@'localhost' IDENTIFIED BY 'NEW_USER_PASSWORD';
+FLUSH PRIVILEGES;
+
+Если пароль установлен, то заходим с помощью mysql -u root -p
+
 1)create database logistics_db character set utf8 collate utf8_general_ci;
 2)create table roles(role_id int(5) not null auto_increment,
 		    role_name varchar(100),
