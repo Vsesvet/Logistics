@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QDialog
 
 from Class_Mysql import*
 from db_config import host, port, password, db_name, user
+import generator_password
 
 class Ui_Create_participant(QDialog):
     def __init__(self):
@@ -134,4 +135,5 @@ class Ui_Create_participant(QDialog):
         else:
             self.lineEdit_phone_number.setPlaceholderText("ВВЕДИТЕ НОМЕР ТЕЛЕФОНА")
     def generate_password(self):
-        pass
+        passw = generator_password.generate()
+        self.lineEdit_password.setText(f'{passw}')
