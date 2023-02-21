@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QDialog
 
 from Class_Mysql import*
 from db_config import host, port, password, db_name, user
+import generator_password
 
 class Ui_Create_participant(QDialog):
     def __init__(self):
@@ -43,12 +44,6 @@ class Ui_Create_participant(QDialog):
         self.lineEdit_first_name = QtWidgets.QLineEdit(self)
         self.lineEdit_first_name.setGeometry(QtCore.QRect(150, 100, 131, 25))
         self.lineEdit_first_name.setObjectName("lineEdit_first_name")
-        self.comboBox_select_organization = QtWidgets.QComboBox(self)
-        self.comboBox_select_organization.setGeometry(QtCore.QRect(290, 140, 131, 25))
-        self.comboBox_select_organization.setObjectName("comboBox_select_organization")
-        self.comboBox_select_organization.addItem("")
-        self.comboBox_select_organization.addItem("")
-        self.comboBox_select_organization.addItem("")
         self.pushButton_save = QtWidgets.QPushButton(self)
         self.pushButton_save.setGeometry(QtCore.QRect(330, 330, 89, 25))
         self.pushButton_save.setObjectName("pushButton_save")
@@ -75,8 +70,7 @@ class Ui_Create_participant(QDialog):
         self.setTabOrder(self.lineEdit_first_name, self.lineEdit_last_name)
         self.setTabOrder(self.lineEdit_last_name, self.lineEdit_email)
         self.setTabOrder(self.lineEdit_email, self.lineEdit_city)
-        self.setTabOrder(self.lineEdit_city, self.comboBox_select_organization)
-        self.setTabOrder(self.comboBox_select_organization, self.lineEdit_password)
+        self.setTabOrder(self.lineEdit_city, self.lineEdit_password)
         self.setTabOrder(self.lineEdit_password, self.pushButton_generate)
         self.setTabOrder(self.pushButton_generate, self.lineEdit_comment)
         self.setTabOrder(self.lineEdit_comment, self.checkBox_disabled_participant)
@@ -100,9 +94,6 @@ class Ui_Create_participant(QDialog):
         self.label_create_participant.setText(_translate("Create_participant", "Создание участника"))
         self.lineEdit_phone_number.setPlaceholderText(_translate("Create_participant", "79265001020"))
         self.lineEdit_first_name.setPlaceholderText(_translate("Create_participant", "Имя..."))
-        self.comboBox_select_organization.setItemText(0, _translate("Create_participant", "Организация"))
-        self.comboBox_select_organization.setItemText(1, _translate("Create_participant", "Мерц"))
-        self.comboBox_select_organization.setItemText(2, _translate("Create_participant", "Аллерган"))
         self.pushButton_save.setText(_translate("Create_participant", "Сохранить"))
         self.pushButton_cancel.setText(_translate("Create_participant", "Отмена"))
         self.lineEdit_city.setPlaceholderText(_translate("Create_participant", "Город..."))
@@ -134,4 +125,5 @@ class Ui_Create_participant(QDialog):
         else:
             self.lineEdit_phone_number.setPlaceholderText("ВВЕДИТЕ НОМЕР ТЕЛЕФОНА")
     def generate_password(self):
-        pass
+        passw = generator_password.generate()
+        self.lineEdit_password.setText(f'{passw}')
