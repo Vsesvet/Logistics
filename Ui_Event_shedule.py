@@ -4,6 +4,8 @@ from Ui_Create_event import *
 from Ui_Create_participant import *
 from Ui_Create_organization import *
 from Ui_Create_inspector import *
+from Ui_list_of_all_participants_F import*
+from Ui_list_of_all_participants import*
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -35,6 +37,11 @@ class Ui_Event_shedule(QMainWindow):
         self.pushButton_create_event = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_create_event.setObjectName("pushButton_create_event")
         self.gridLayout_2.addWidget(self.pushButton_create_event, 2, 0, 1, 1)
+
+        self.pushButton_show_all_participants = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_show_all_participants.setObjectName("pushButton_show_all_participants")
+        self.gridLayout_2.addWidget(self.pushButton_show_all_participants, 3, 3, 1, 1)
+
         self.pushButton_create_organization = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_create_organization.setObjectName("pushButton_create_organization")
         self.gridLayout_2.addWidget(self.pushButton_create_organization, 2, 1, 1, 1)
@@ -136,6 +143,7 @@ class Ui_Event_shedule(QMainWindow):
         self.pushButton_export_xls.clicked.connect(self.showFullScreen)
         self.pushButton_print.clicked.connect(self.show)
         self.pushButton_find_event.clicked.connect(self.tree_event_shedule.clear)
+        self.pushButton_show_all_participants.clicked.connect(self.show_list_of_all_participants)
         QtCore.QMetaObject.connectSlotsByName(self)
 
         # Порядок перехода по Tab
@@ -231,6 +239,11 @@ class Ui_Event_shedule(QMainWindow):
         self.create_inspector = Ui_Create_inspector()
         self.create_inspector.exec()
 
+    def show_list_of_all_participants(self):
+        """Запускает окно просмотра всех пользователей"""
+        self.show_list_of_all_participants = Ui_list_of_all_participants()
+        #self.ui_list_of_all_participants_f = Ui_list_of_all_participants_F()
+        self.show_list_of_all_participants.exec()
     def finish_log(self):
         """Запись в journal.log события окончания работы программы."""
         Journal().finish_log()

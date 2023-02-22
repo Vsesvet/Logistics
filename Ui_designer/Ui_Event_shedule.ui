@@ -216,6 +216,13 @@
       </item>
      </layout>
     </item>
+    <item row="3" column="3">
+     <widget class="QPushButton" name="pushButton_list_of_all_participants">
+      <property name="text">
+       <string>Список всех участников</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -224,7 +231,7 @@
      <x>0</x>
      <y>0</y>
      <width>1080</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
