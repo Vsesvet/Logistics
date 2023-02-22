@@ -121,9 +121,12 @@ class Ui_Create_participant(QDialog):
         role = "participant"
         full_name = second_name + " " + first_name +" " + last_name
         if len(phone_number) == 11:
-            self.db.add_participant(phone_number, second_name, first_name, last_name, role, full_name, email, city, password, comment,disabled)
+            self.db.add_participant(phone_number, second_name, first_name, last_name, role, full_name, email, city, password, comment, disabled)
+            self.close()
         else:
             self.lineEdit_phone_number.setPlaceholderText("ВВЕДИТЕ НОМЕР ТЕЛЕФОНА")
+
+
     def generate_password(self):
         passw = generator_password.generate()
         self.lineEdit_password.setText(f'{passw}')
