@@ -1,12 +1,12 @@
 import pymysql
-from db_config import host, password,db_name,user
+from db_config import host, port, password, db_name, user
 class Mysql:
     """Подключение и работа с базой данных MqSql"""
     def __init__(self, host, port, user, password, db_name):
         try:
             self.connection = pymysql.connect(
                 host=host,
-                port=3306,
+                port=port,
                 user=user,
                 password=password,
                 database=db_name,

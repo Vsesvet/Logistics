@@ -4,7 +4,7 @@ from Ui_Create_event import *
 from Ui_Create_participant import *
 from Ui_Create_organization import *
 from Ui_Create_inspector import *
-from Ui_list_of_all_participants_F import*
+# from Ui_list_of_all_participants_F import*
 from Ui_list_of_all_participants import*
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -173,6 +173,7 @@ class Ui_Event_shedule(QMainWindow):
         self.pushButton_create_event.setText(_translate("self", "Создать мероприятие"))
         self.pushButton_create_organization.setText(_translate("self", "Создать организацию"))
         self.pushButton_export_xls.setText(_translate("self", "Export xls"))
+        self.pushButton_show_all_participants.setText(_translate("self", "Список участников"))
         self.pushButton_print.setText(_translate("self", "Печать"))
         self.pushButton_exit.setText(_translate("self", "Выход"))
         self.pushButton_create_participant.setText(_translate("self", "Создать участника"))
@@ -182,7 +183,7 @@ class Ui_Event_shedule(QMainWindow):
         self.label_total_completed_events.setText(_translate("self", "Всего проведено 2 мероприятия"))
 
         self.label_find_event.setText(_translate("self", "Фильтры поиска мероприятия:"))
-        self.label_status_event.setText(_translate("self", "  Статус мероприятия"))
+        self.label_status_event.setText(_translate("self", "Статус мероприятия"))
         self.comboBox_select_organization.setItemText(0, _translate("self", "Все"))
         self.comboBox_select_organization.setItemText(1, _translate("self", "Мерц"))
         self.comboBox_select_organization.setItemText(2, _translate("self", "Аллерган"))
@@ -209,11 +210,12 @@ class Ui_Event_shedule(QMainWindow):
 
     def adjust_tree(self, columns_names, tree):
         """Установка наименований для колонок Tree"""
+        # tree.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
+
         for i in columns_names:
             tree.headerItem().setText(columns_names.index(i), i)
 
         # Разобраться как установить фикс размер для первой колонки
-        tree.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         # tree.resizeColumnToContents(50)
 
     def show_create_event(self):

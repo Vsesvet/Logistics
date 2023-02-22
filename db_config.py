@@ -1,5 +1,5 @@
 host = "127.0.0.1"
-user = "root"
+user = "admin"
 port = 3306
-password = "root"
+password = "gnt6al47"
 db_name = "logistics_db"
